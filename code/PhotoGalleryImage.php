@@ -11,7 +11,7 @@ class PhotoGalleryImage extends DataObject
 
     private static $db = [
         'SortOrder' => 'Int',
-        'Title' => 'Varchar(255)'
+        'Title' => 'Text'
     ];
 
     private static $has_one = [
@@ -57,7 +57,7 @@ class PhotoGalleryImage extends DataObject
 
     protected function onAfterDelete()
     {
- 
+
   		if ($this->config()->ondelete_delete_image_files) {
   			$this->Image()->deleteIfUnused();
   		}
@@ -70,7 +70,7 @@ class PhotoGalleryImage extends DataObject
         $translatedLabels = [
             'Thumbnail' => _t('PurpleSpider\BasicGalleryExtension\PhotoGalleryImage.Thumbnail', 'Image') //used in summary_fields
         ];
-        
+
         return array_merge(parent::fieldLabels($includerelations), $translatedLabels);
     }
 
@@ -82,7 +82,7 @@ class PhotoGalleryImage extends DataObject
 
         return false;
     }
-    
+
     // To support old custom templates
     public function getPhotoGalleryPage()
     {
